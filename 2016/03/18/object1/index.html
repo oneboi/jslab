@@ -3,17 +3,36 @@
 <head>
   <meta charset="utf-8">
   
-  <title>努力的意义</title>
+  <title>面向对象编程(封装) | 努力的意义</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="努力的意义">
-<meta property="og:url" content="http://oneboi.github.io/jslab.git/index.html">
+  <meta name="description" content="封装的三方模式
+原始模式
+构造函数模式
+pototype模式
+
+原始模式生成对象的原始模式假定我们把猫看成一个对象，它有”名字”和”颜色”两个属性。1234　　var Cat = &amp;#123;　　　　name : &apos;&apos;,　　　　color : &apos;&apos;　　&amp;#125;
+现在，我们需要根据这个原型对象的规格（schema），生成两个实例对象。123456　　var cat1 = &amp;#123;&amp;#125;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象编程(封装)">
+<meta property="og:url" content="http://oneboi.github.io/jslab.git/2016/03/18/object1/index.html">
 <meta property="og:site_name" content="努力的意义">
-<meta property="og:description">
+<meta property="og:description" content="封装的三方模式
+原始模式
+构造函数模式
+pototype模式
+
+原始模式生成对象的原始模式假定我们把猫看成一个对象，它有”名字”和”颜色”两个属性。1234　　var Cat = &amp;#123;　　　　name : &apos;&apos;,　　　　color : &apos;&apos;　　&amp;#125;
+现在，我们需要根据这个原型对象的规格（schema），生成两个实例对象。123456　　var cat1 = &amp;#123;&amp;#125;">
+<meta property="og:updated_time" content="2016-03-18T09:15:31.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="努力的意义">
-<meta name="twitter:description">
+<meta name="twitter:title" content="面向对象编程(封装)">
+<meta name="twitter:description" content="封装的三方模式
+原始模式
+构造函数模式
+pototype模式
+
+原始模式生成对象的原始模式假定我们把猫看成一个对象，它有”名字”和”颜色”两个属性。1234　　var Cat = &amp;#123;　　　　name : &apos;&apos;,　　　　color : &apos;&apos;　　&amp;#125;
+现在，我们需要根据这个原型对象的规格（schema），生成两个实例对象。123456　　var cat1 = &amp;#123;&amp;#125;">
   
     <link rel="alternative" href="/atom.xml" title="努力的意义" type="application/atom+xml">
   
@@ -59,53 +78,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-object2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/jslab/2016/03/18/object2/" class="article-date">
-  <time datetime="2016-03-18T09:18:01.924Z" itemprop="datePublished">2016-03-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/jslab/2016/03/18/object2/">面向对象编程(继承)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="构造函数的继承（原型对象的继承）"><a href="#构造函数的继承（原型对象的继承）" class="headerlink" title="构造函数的继承（原型对象的继承）"></a>构造函数的继承（原型对象的继承）</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5种继承方法</span><br></pre></td></tr></table></figure>
-<h2 id="函数继承-猫继承动物"><a href="#函数继承-猫继承动物" class="headerlink" title="函数继承(猫继承动物)"></a>函数继承(猫继承动物)</h2><p>今天要介绍的是，对象之间的”继承”的五种方法。</p>
-<p>比如，现在有一个”动物”对象的构造函数。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="function"><span class="keyword">function</span> <span class="title">Animal</span><span class="params">()</span></span>&#123;</span><br><span class="line">　　　　<span class="keyword">this</span>.species = <span class="string">"动物"</span>;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure></p>
-<p>还有一个”猫”对象的构造函数。<br><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name,color</span>)</span>&#123;</span><br><span class="line">　　　　<span class="keyword">this</span>.name = name;</span><br><span class="line">　　　　<span class="keyword">this</span>.color = <span class="built_in">color</span>;</span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure></p>
-<p>怎样才能使”猫”继承”动物”呢？</p>
-<h1 id="1-绑定继承"><a href="#1-绑定继承" class="headerlink" title="1.绑定继承"></a>1.绑定继承</h1><p>第一种方法也是最简单的方法，使用call或apply方法，将父对象的构造函数绑定在子对象上，即在子对象构造函数中加一行：</p>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">   　<span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　　　<span class="keyword">this</span>.species = <span class="string">"动物"</span>;</span><br><span class="line">　　&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">　　<span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name,color</span>)</span>&#123;</span><br><span class="line">　　　　Animal.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">　　　　<span class="keyword">this</span>.name = name;</span><br><span class="line">　　　　<span class="keyword">this</span>.color = <span class="built_in">color</span>;</span><br><span class="line">　　&#125;</span><br><span class="line">　　<span class="built_in">var</span> cat1 = <span class="keyword">new</span> Cat(<span class="string">"大毛"</span>,<span class="string">"黄色"</span>);</span><br><span class="line">　　alert(cat1.species); <span class="comment">// 动物</span></span><br></pre></td></tr></table></figure>
-<h1 id="prototype继承"><a href="#prototype继承" class="headerlink" title="prototype继承"></a>prototype继承</h1><p><a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://oneboi.github.io/jslab.git/jslab/2016/03/18/object2/" data-id="cilxi7wol0001e4mk328ykyy9" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-object1" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-object1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/jslab/2016/03/18/object1/" class="article-date">
   <time datetime="2016-03-18T09:04:54.620Z" itemprop="datePublished">2016-03-18</time>
@@ -118,8 +91,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/jslab/2016/03/18/object1/">面向对象编程(封装)</a>
+    <h1 class="article-title" itemprop="name">
+      面向对象编程(封装)
     </h1>
   
 
@@ -167,11 +140,24 @@
     </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+    <a href="/jslab/2016/03/18/object2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          面向对象编程(继承)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
 </article>
 
-
-  
-  
 </section>
         
           <aside id="sidebar">
